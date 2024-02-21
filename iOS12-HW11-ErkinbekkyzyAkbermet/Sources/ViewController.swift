@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 class MyView: UIView {
     
@@ -20,10 +21,11 @@ class ViewController: UIViewController {
         loginField.placeholder = "Login"
         loginField.textColor = .systemGray3
         loginField.textAlignment = .left
+        loginField.clipsToBounds = true
         loginField.contentVerticalAlignment = .center
         loginField.backgroundColor = .white
-        loginField.setLeftIcon(UIImage(systemName: "user") ?? UIImage())
-        loginField.setRightIcon(UIImage(systemName: "Subtract") ?? UIImage())
+        loginField.setLeftIcon(UIImage(named: "union-1") ?? UIImage())
+        loginField.setRightIcon(UIImage(named: "Subtract") ?? UIImage())
         loginField.layer.cornerRadius = 20
         loginField.layer.shadowColor = UIColor.black.cgColor
         loginField.layer.shadowOpacity = 0.3
@@ -135,8 +137,8 @@ class ViewController: UIViewController {
         passwordField.textAlignment = .left
         passwordField.contentVerticalAlignment = .center
         passwordField.backgroundColor = .white
-        passwordField.setLeftIcon(UIImage(systemName: "user") ?? UIImage())
-        passwordField.setRightIcon(UIImage(systemName: "Subtract") ?? UIImage())
+        passwordField.setLeftIcon(UIImage(named: "Frame 1-3") ?? UIImage())
+        passwordField.tintColor = .systemGray
         passwordField.layer.cornerRadius = 20
         passwordField.layer.shadowColor = UIColor.black.cgColor
         passwordField.layer.shadowOpacity = 0.3
@@ -279,58 +281,131 @@ class ViewController: UIViewController {
     }
     
     private func setupLayout() {
-        NSLayoutConstraint.activate([
-            button.heightAnchor.constraint(equalToConstant: 38),
-            button.widthAnchor.constraint(equalToConstant: 160),
-            button.topAnchor.constraint(equalTo: view.topAnchor, constant: 650),
-            button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -205),
-            
-            twitterButton.heightAnchor.constraint(equalToConstant: 38),
-            twitterButton.widthAnchor.constraint(equalToConstant: 160),
-            twitterButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 650),
-            twitterButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 205),
+        button.snp.makeConstraints { make in
+            make.height.equalTo(38)
+            make.width.equalTo(160)
+            make.top.equalTo(view.snp.top).offset(650)
+            make.trailing.equalTo(view.snp.trailing).offset(-205)
+        }
         
-            
-            loginLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 160),
-            loginLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 160),
-            
-            line.topAnchor.constraint(equalTo: view.topAnchor, constant: 600),
-            line.heightAnchor.constraint(equalToConstant: 0.5),
-            line.widthAnchor.constraint(equalToConstant: 120),
-            line.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            
-            secondLine.topAnchor.constraint(equalTo: view.topAnchor, constant: 600),
-            secondLine.heightAnchor.constraint(equalToConstant: 0.5),
-            secondLine.widthAnchor.constraint(equalToConstant: 120),
-            secondLine.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            
-            dontHave.topAnchor.constraint(equalTo: view.topAnchor, constant: 730),
-            dontHave.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 95),
-            
-            signUp.topAnchor.constraint(equalTo: view.topAnchor, constant: 724),
-            signUp.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 225),
-            
-            connectWith.topAnchor.constraint(equalTo: view.topAnchor, constant: 593),
-            connectWith.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 148),
-            
-            loginField.topAnchor.constraint(equalTo: view.topAnchor, constant: 260),
-            loginField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            loginField.widthAnchor.constraint(equalToConstant: 300),
-            loginField.heightAnchor.constraint(equalToConstant: 43),
-            
-            passwordField.topAnchor.constraint(equalTo: view.topAnchor, constant: 325),
-            passwordField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            passwordField.widthAnchor.constraint(equalToConstant: 300),
-            passwordField.heightAnchor.constraint(equalToConstant: 43),
-            
-            loginButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 415),
-            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            loginButton.widthAnchor.constraint(equalToConstant: 300),
-            loginButton.heightAnchor.constraint(equalToConstant: 43),
-            
-            forgot.topAnchor.constraint(equalTo: view.topAnchor, constant: 475),
-            forgot.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 130)
-        ])
+        twitterButton.snp.makeConstraints { make in
+            make.height.equalTo(38)
+            make.width.equalTo(160)
+            make.top.equalTo(view.snp.top).offset(650)
+            make.leading.equalTo(view.snp.leading).offset(205)
+        }
+        
+        loginLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top).offset(160)
+            make.leading.equalTo(view.snp.leading).offset(160)
+        }
+        
+        line.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top).offset(600)
+            make.height.equalTo(0.5)
+            make.width.equalTo(120)
+            make.leading.equalTo(view.snp.leading).offset(20)
+        }
+        
+        secondLine.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top).offset(600)
+            make.height.equalTo(0.5)
+            make.width.equalTo(120)
+            make.trailing.equalTo(view.snp.trailing).offset(-20)
+        }
+        
+        dontHave.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top).offset(730)
+            make.leading.equalTo(view.snp.leading).offset(95)
+        }
+        
+        signUp.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top).offset(724)
+            make.leading.equalTo(view.snp.leading).offset(225)
+        }
+        
+        connectWith.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top).offset(593)
+            make.leading.equalTo(view.snp.leading).offset(148)
+        }
+        
+        loginField.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top).offset(260)
+            make.leading.equalTo(view.snp.leading).offset(50)
+            make.width.equalTo(300)
+            make.height.equalTo(43)
+        }
+        
+        passwordField.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top).offset(325)
+            make.leading.equalTo(view.snp.leading).offset(50)
+            make.width.equalTo(300)
+            make.height.equalTo(43)
+        }
+        
+        loginButton.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top).offset(415)
+            make.leading.equalTo(view.snp.leading).offset(50)
+            make.width.equalTo(300)
+            make.height.equalTo(43)
+        }
+        
+        forgot.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top).offset(475)
+            make.leading.equalTo(view.snp.leading).offset(130)
+        }
+//        NSLayoutConstraint.activate([
+//            button.heightAnchor.constraint(equalToConstant: 38),
+//            button.widthAnchor.constraint(equalToConstant: 160),
+//            button.topAnchor.constraint(equalTo: view.topAnchor, constant: 650),
+//            button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -205),
+//            
+//            twitterButton.heightAnchor.constraint(equalToConstant: 38),
+//            twitterButton.widthAnchor.constraint(equalToConstant: 160),
+//            twitterButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 650),
+//            twitterButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 205),
+//        
+//            
+//            loginLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 160),
+//            loginLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 160),
+//            
+//            line.topAnchor.constraint(equalTo: view.topAnchor, constant: 600),
+//            line.heightAnchor.constraint(equalToConstant: 0.5),
+//            line.widthAnchor.constraint(equalToConstant: 120),
+//            line.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+//            
+//            secondLine.topAnchor.constraint(equalTo: view.topAnchor, constant: 600),
+//            secondLine.heightAnchor.constraint(equalToConstant: 0.5),
+//            secondLine.widthAnchor.constraint(equalToConstant: 120),
+//            secondLine.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+//            
+//            dontHave.topAnchor.constraint(equalTo: view.topAnchor, constant: 730),
+//            dontHave.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 95),
+//            
+//            signUp.topAnchor.constraint(equalTo: view.topAnchor, constant: 724),
+//            signUp.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 225),
+//            
+//            connectWith.topAnchor.constraint(equalTo: view.topAnchor, constant: 593),
+//            connectWith.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 148),
+//            
+//            loginField.topAnchor.constraint(equalTo: view.topAnchor, constant: 260),
+//            loginField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+//            loginField.widthAnchor.constraint(equalToConstant: 300),
+//            loginField.heightAnchor.constraint(equalToConstant: 43),
+//            
+//            passwordField.topAnchor.constraint(equalTo: view.topAnchor, constant: 325),
+//            passwordField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+//            passwordField.widthAnchor.constraint(equalToConstant: 300),
+//            passwordField.heightAnchor.constraint(equalToConstant: 43),
+//            
+//            loginButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 415),
+//            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+//            loginButton.widthAnchor.constraint(equalToConstant: 300),
+//            loginButton.heightAnchor.constraint(equalToConstant: 43),
+//            
+//            forgot.topAnchor.constraint(equalTo: view.topAnchor, constant: 475),
+//            forgot.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 130)
+//        ])
     }
     
     private func setupBackground() {
